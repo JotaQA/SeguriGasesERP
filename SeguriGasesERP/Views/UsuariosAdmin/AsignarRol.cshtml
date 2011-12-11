@@ -1,0 +1,32 @@
+﻿@model SeguriGasesERP.Models.PerfilUsuario
+
+@{
+    ViewBag.Title = "Asignar Rol";
+}
+
+<h2>Asignar Rol</h2>
+
+Usuario: @Model.Username
+
+<h4>Roles asignados:</h4>
+<ul>
+@foreach (string rol in ViewBag.RolesUsuario)
+{
+   <li>
+        @rol  | @Html.ActionLink("QuitarRol", "QuitarRol", new { id = Model.ID, rol = rol })
+   </li>
+}
+</ul>
+
+@using (Html.BeginForm())
+{
+    <select name="rol">
+    @foreach (string rol in ViewBag.Roles)
+    {
+        <option value="@rol">@rol</option>
+    }
+    </select>
+    <br />
+    <input type="submit" value="Asignar" />
+
+}

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.ProductoVenta>
+
+@{
+    ViewBag.Title = "ReporteVentasProducto";
+}
+
+<h2>ReporteVentasProducto</h2>
+
+<h3> Total sin iva = @ViewBag.Total</h3>
+<h3> Total con iva = @ViewBag.TotalIva</h3>
+<div id="filtros">
+@using (Html.BeginForm())
+{
+        <table>
+            <tr> 
+                <td>Seleccionar rango de fechas:</td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    @Html.DropDownList("mes1", new SelectList(ViewBag.Meses as  System.Collections.IEnumerable, "Value", "Text"))
+                    @Html.DropDownList("anio1", new SelectList(ViewBag.Anios as System.Collections.IEnumerable, "Value", "Text"))
+                </td>
+                <td>
+                    
+                    @Html.DropDownList("mes2", new SelectList(ViewBag.Meses as  System.Collections.IEnumerable, "Value", "Text"))
+                    @Html.DropDownList("anio2", new SelectList(ViewBag.Anios as System.Collections.IEnumerable, "Value", "Text"))
+                </td>
+                <td>
+                    <input type="submit" value="Buscar" />
+                    
+                    
+                </td>
+            </tr>
+        </table>
+    <br />
+}
+</div>
+<table>
+    <tr>
+        <th>
+            Folio
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Categoria
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Vandedor
+        </th>
+        <th>
+            Precio
+        </th>
+        <th>
+             Sub Total
+        </th>
+        <th>
+             Total
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venta.ClaveCFD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venta.FechaVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Categoria.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venta.Cliente.NombreCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venta.usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioVenta)
+        </td>
+        <td>
+            @(Decimal.Round(item.Count * item.PrecioVenta, 2).ToString())
+        </td>
+        <td>
+            @Decimal.Round((item.Count * item.PrecioVenta) * (decimal)1.16, 2)
+            
+        </td>
+        
+    </tr>
+}
+
+</table>

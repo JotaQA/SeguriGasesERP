@@ -1,0 +1,96 @@
+﻿@model SeguriGasesERP.ViewModels.CarritoDeComprasViewModel
+
+@{
+    ViewBag.Title = "Resumen";
+}
+
+<h2>Resumen de Venta</h2>
+
+<table>
+<tr>
+<td>Cliente:</td> <td>@ViewBag.Cliente.NombreCliente</td>
+</tr>
+<tr>
+<td>Razón Social:</td> <td>@ViewBag.Cliente.NombreReceptor </td>
+</tr>
+<tr>
+<td>RFC:</td> <td>@ViewBag.Cliente.RfcReceptor </td>
+</tr>
+<tr>
+<td>Dirección:</td> <td>@ViewBag.Cliente.CalleReceptor @ViewBag.Cliente.NoExteriorReceptor @ViewBag.Cliente.NoInteriorReceptor @ViewBag.Cliente.ColoniaReceptor</td>
+</tr>
+
+</table>
+
+<form action="Resumen" method="post"> 
+<table>
+    <tr>
+        <th>
+           Producto
+        </th>
+        <th>
+           Cantidad
+        </th>
+        <th>
+           Precio de Venta
+        </th>
+        <th>
+           Total
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.ElementosCarrito)
+{
+    <tr id="row-@item.RecordId">
+        
+            <td>
+               @item.Producto.Nombre
+            </td>
+
+            <td>
+               @item.Count
+            </td>
+
+            <td>
+               @String.Format("{0:F}", item.PrecioVenta)
+            </td>
+
+            <td>
+               @String.Format("{0:F}", (item.PrecioVenta * item.Count))
+            </td>
+            
+          
+
+            <td>
+                <a href="#" class="RemoveLink" data-id="@item.RecordId"> Quitar del Carrito </a>
+            </td>
+            
+      
+       
+    </tr>
+}
+</table>
+<h4>SubTotal: @String.Format("{0:F}", Model.TotalCarrito)</h4>
+<h4>Total: @String.Format("{0:F}", (Model.TotalCarrito * 1.16M))</h4>
+
+
+@if (ViewBag.SugetoCredito == 1)
+{
+   <div>
+      Esta venta puede pagarse a crédito, desea enviar a credito?
+      @Html.CheckBox("credito", false)
+   </div>
+}
+else
+{
+   <input name="credito" type="hidden" value="false" />
+
+}
+
+   <input type="hidden" name="IdCliente" value="@ViewBag.Cliente.ID" />
+   <input type="hidden" name="IdClient" value="@ViewBag.Cliente.ID" />
+   <input type="hidden" name="IdSucursal" value="@ViewBag.IdSucursal" />
+   <input type="submit" value="Realizar Venta" />
+
+</form>

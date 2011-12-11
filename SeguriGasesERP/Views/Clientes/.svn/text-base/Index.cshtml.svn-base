@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Cliente>
+
+@{
+    ViewBag.Title = "Indice de Clientes";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Crear")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Cliente
+        </th>        
+        <th>
+            RFC
+        </th>        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID }) 
+        </td>
+        <td>
+           @item.NombreCliente
+        </td>       
+        <td>
+            @item.RfcReceptor
+        </td>        
+    </tr>
+}
+
+</table>
+

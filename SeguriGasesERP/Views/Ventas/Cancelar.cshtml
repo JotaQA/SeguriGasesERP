@@ -1,0 +1,75 @@
+﻿@model SeguriGasesERP.Models.Venta
+
+@{
+    ViewBag.Title = "Cancelar";
+}
+
+<h2>Cancelar</h2>
+
+<fieldset>
+    <legend>Venta</legend>
+
+    <div class="display-label">ClaveCFD</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClaveCFD)
+    </div>
+
+    
+
+    <div class="display-label">Moneda</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Moneda)
+    </div>
+
+   
+
+    <div class="display-label">Subtotal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Subtotal)
+    </div>
+
+    <div class="display-label">Total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Total)
+    </div>
+
+    
+    <div class="display-label">TotalImpuestosTrasladados</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalImpuestosTrasladados)
+    </div>
+
+    <div class="display-label">FechaVenta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaVenta)
+    </div>
+
+    <div class="display-label">Liquidado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Liquidado)
+    </div>
+
+    <div class="display-label">Sucursal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sucursal.Nombre)
+    </div>
+
+    <div class="display-label">Cliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cliente.NombreCliente)
+    </div>
+
+    <div class="display-label">Por:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario)
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <input type="hidden" name="id" value="@Model.ID" />
+        <input type="submit" value="Aceptar" />
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

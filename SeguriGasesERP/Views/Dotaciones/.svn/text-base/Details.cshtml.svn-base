@@ -1,0 +1,45 @@
+﻿@model SeguriGasesERP.Models.DotacionCilindros
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>DotacionCilindros</legend>
+
+    <div class="display-label">IdCliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCliente)
+    </div>
+    <table>
+    <tr>
+        <th>
+            Tipo de Cilindro
+        </th>
+        <th>
+            Depósito
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Cilindros) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Cilindro.TipoCilindro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deposito)
+        </td>
+        <td>
+            @Html.ActionLink("Quitar", "Quitar", new { id=item.ID, dotacion=Model.ID })
+        </td>
+    </tr>
+}
+</table>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Venta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            ClaveCFD
+        </th>
+        <th>
+            FormaDePago
+        </th>
+        <th>
+            Parcialidades
+        </th>
+        <th>
+            CondicionesDePago
+        </th>
+        <th>
+            MetodoDePago
+        </th>
+        <th>
+            Descuento
+        </th>
+        <th>
+            PorcentajeDescuento
+        </th>
+        <th>
+            MotivoDescuento
+        </th>
+        <th>
+            Moneda
+        </th>
+        <th>
+            TipoCambio
+        </th>
+        <th>
+            FechaTipoCambio
+        </th>
+        <th>
+            Subtotal
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            ImporteLetra
+        </th>
+        <th>
+            TotalImpuestosRetenidos
+        </th>
+        <th>
+            TotalImpuestosTrasladados
+        </th>
+        <th>
+            FechaVenta
+        </th>
+        <th>
+            IdSucursal
+        </th>
+        <th>
+            IdCliente
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @item.ClaveCFD
+        </td>
+        <td>
+            @item.FormaDePago
+        </td>
+        <td>
+            @item.Parcialidades
+        </td>
+        <td>
+            @item.CondicionesDePago
+        </td>
+        <td>
+            @item.MetodoDePago
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Descuento)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.PorcentajeDescuento)
+        </td>
+        <td>
+            @item.MotivoDescuento
+        </td>
+        <td>
+            @item.Moneda
+        </td>
+        <td>
+            @String.Format("{0:F}", item.TipoCambio)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaTipoCambio)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Subtotal)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Total)
+        </td>
+        <td>
+            @item.ImporteLetra
+        </td>
+        <td>
+            @String.Format("{0:F}", item.TotalImpuestosRetenidos)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.TotalImpuestosTrasladados)
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaVenta)
+        </td>
+        <td>
+            @item.IdSucursal
+        </td>
+        <td>
+            @item.IdCliente
+        </td>
+    </tr>
+}
+
+</table>
+

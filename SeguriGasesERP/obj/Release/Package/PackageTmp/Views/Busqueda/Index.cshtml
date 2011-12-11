@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Producto>
+
+@{
+    ViewBag.Title = "búsqeda de Productos";
+}
+
+<h2>Búsqueda de Productos</h2>
+
+<p>
+    <form action="/Busqueda/" method="post">
+        <table>
+            <tr> 
+                <td>Busqueda:</td>
+                <td>
+                    @Html.TextBox("word")
+                    @Html.ValidationMessage("Name")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Buscar" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Clave
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            PrecioLista
+        </th>
+         <th>
+            Costo
+        </th>
+        <th>
+            Unidad
+        </th>
+        <th>
+            Categoria
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Agregar a Venta", "../CarritoDeCompras/AgregarAlCarrito/", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "../ProductoManager/Details", new { id=item.ID }) |
+            
+        </td>
+        <td>
+            @item.Clave
+        </td>
+        <td>
+            @item.Nombre
+        </td>
+        <td>
+            @String.Format("{0:F}", item.PrecioLista)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Costo)
+        </td>
+        <td>
+        @if (item.Unidad != null)
+        {
+            @item.Unidad.Nombre
+        }
+        </td>
+        <td>
+        @if (item.Categoria != null)
+        {
+            @item.Categoria.Nombre
+        }
+        </td>
+    </tr>
+}
+
+</table>
+

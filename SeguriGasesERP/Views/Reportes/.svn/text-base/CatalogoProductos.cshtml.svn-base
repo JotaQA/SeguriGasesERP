@@ -1,0 +1,142 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Producto>
+
+@{
+    ViewBag.Title = "CatalogoProductos";
+}
+
+<h2>CatalogoProductos</h2>
+
+<div id="filtros">
+@using (Html.BeginForm())
+{
+        <table>
+            <tr> 
+                <td>Busqueda por Producto:</td>
+                <td>
+                    @Html.TextBox("word")
+                    @Html.ValidationMessage("Name")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Buscar" />
+                    <input type="hidden" name="tipo" value="3" /> 
+                    <input type="hidden" name="id" value="0" /> 
+                    
+                </td>
+            </tr>
+        </table>
+}
+</div>
+
+
+
+
+<div id="filtros">
+@using (Html.BeginForm())
+{
+        <table>
+            <tr> 
+                <td>Filtro por categoria:</td>
+                <td>
+                     @Html.DropDownList("id", new SelectList(ViewBag.Categorias as System.Collections.IEnumerable, "ID", "Nombre"))
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Filtrar" />
+                    <input type="hidden" name="tipo" value="1" />
+                    <input type="hidden" name="word" value="no" />
+                </td>
+            </tr>
+        </table>
+}
+</div>
+
+
+<div id="filtros">
+@using (Html.BeginForm())
+{
+        <table>
+            <tr> 
+                <td>Filtro por Proveedor:</td>
+                <td>
+                     @Html.DropDownList("id", new SelectList(ViewBag.Preveedores as System.Collections.IEnumerable, "ID", "RazonSocial"))
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Filtrar" />
+                    <input type="hidden" name="tipo" value="2" />                    
+                    <input type="hidden" name="word" value="no" />
+                </td>
+            </tr>
+        </table>
+}
+</div>
+
+<table>
+    <tr>
+        <th>
+            Clave
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            PrecioLista
+        </th>
+        <th>
+            Costo
+        </th>
+        <th>
+            Activo
+        </th>
+        <th>
+            Unidad
+        </th>
+        <th>
+            Categoria
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clave)
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem => item.Nombre) 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioLista)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+       
+            @Html.DisplayFor(modelItem => item.Unidad.Nombre)
+       
+        </td>
+        <td>
+        
+            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+        
+        </td>
+
+    </tr>
+}
+
+</table>

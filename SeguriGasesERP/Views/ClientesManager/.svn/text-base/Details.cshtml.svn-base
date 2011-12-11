@@ -1,0 +1,90 @@
+﻿@model SeguriGasesERP.Models.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">NombreCliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreCliente)
+    </div>
+
+    <div class="display-label">Contacto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contacto)
+    </div>
+
+    <div class="display-label">Telefono</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">RfcReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RfcReceptor)
+    </div>
+
+    <div class="display-label">NombreReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreReceptor)
+    </div>
+
+    <div class="display-label">CalleReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CalleReceptor)
+    </div>
+
+    <div class="display-label">NoExteriorReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoExteriorReceptor)
+    </div>
+
+    <div class="display-label">NoInteriorReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoInteriorReceptor)
+    </div>
+
+    <div class="display-label">ColoniaReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ColoniaReceptor)
+    </div>
+
+    <div class="display-label">LocalidadReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocalidadReceptor)
+    </div>
+
+    <div class="display-label">ReferenciaReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReferenciaReceptor)
+    </div>
+
+    <div class="display-label">MunicipioReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MunicipioReceptor)
+    </div>
+
+    <div class="display-label">EstadoReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstadoReceptor)
+    </div>
+
+    <div class="display-label">CodigoPostalReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodigoPostalReceptor)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>

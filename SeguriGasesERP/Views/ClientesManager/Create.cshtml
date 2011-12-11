@@ -1,0 +1,180 @@
+﻿@model SeguriGasesERP.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Cliente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NombreCliente)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NombreCliente)
+            @Html.ValidationMessageFor(model => model.NombreCliente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contacto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contacto)
+            @Html.ValidationMessageFor(model => model.Contacto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefono)
+            @Html.ValidationMessageFor(model => model.Telefono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RfcReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RfcReceptor)
+            @Html.ValidationMessageFor(model => model.RfcReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NombreReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NombreReceptor)
+            @Html.ValidationMessageFor(model => model.NombreReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CalleReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CalleReceptor)
+            @Html.ValidationMessageFor(model => model.CalleReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NoExteriorReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NoExteriorReceptor)
+            @Html.ValidationMessageFor(model => model.NoExteriorReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NoInteriorReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NoInteriorReceptor)
+            @Html.ValidationMessageFor(model => model.NoInteriorReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ColoniaReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ColoniaReceptor)
+            @Html.ValidationMessageFor(model => model.ColoniaReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LocalidadReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LocalidadReceptor)
+            @Html.ValidationMessageFor(model => model.LocalidadReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReferenciaReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReferenciaReceptor)
+            @Html.ValidationMessageFor(model => model.ReferenciaReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MunicipioReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MunicipioReceptor)
+            @Html.ValidationMessageFor(model => model.MunicipioReceptor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EstadoReceptor)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.EstadoReceptor)
+        </div>
+        <div class="editor-field">
+            <select name="EstadoReceptor">
+<option value="Aguascalientes">Aguascalientes</option>
+<option value="Baja California">Baja California</option>
+<option value="Baja California Sur">Baja California Sur</option>
+<option value="Campeche">Campeche</option>
+<option value="Chiapas">Chiapas</option>
+<option value="Chihuahua">Chihuahua</option>
+<option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
+<option value="Colima">Colima</option>
+<option value="Distrito Federal">Distrito Federal</option>
+<option value="Durango">Durango</option>
+<option value="Guanajuato">Guanajuato</option>
+<option value="Guerrero">Guerrero</option>
+<option value="Hidalgo">Hidalgo</option>
+<option value="Jalisco">Jalisco</option>
+<option value="Mexico">Mexico</option>
+<option value="Michoacan de Ocampo">Michoacan de Ocampo</option>
+<option value="Morelos">Morelos</option>
+<option value="Nayarit">Nayarit</option>
+<option value="Nuevo Leon">Nuevo Leon</option>
+<option value="Oaxaca">Oaxaca</option>
+<option value="Puebla">Puebla</option>
+<option value="Queretaro de Arteaga">Queretaro de Arteaga</option>
+<option value="Quintana Roo">Quintana Roo</option>
+<option value="San Luis Potosi">San Luis Potosi</option>
+<option value="Sinaloa">Sinaloa</option>
+<option value="Sonora">Sonora</option>
+<option value="Tabasco">Tabasco</option>
+<option value="Tamaulipas">Tamaulipas</option>
+<option value="Tlaxcala">Tlaxcala</option>
+<option value="Veracruz-Llave">Veracruz-Llave</option>
+<option value="Yucatan">Yucatan</option>
+<option value="Zacatecas">Zacatecas</option>
+</select>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CodigoPostalReceptor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CodigoPostalReceptor)
+            @Html.ValidationMessageFor(model => model.CodigoPostalReceptor)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</div>

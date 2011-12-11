@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.ProductoSucursal>
+
+@{
+    ViewBag.Title = "Existencias";
+}
+
+<h2>Existencias</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Sucursal
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+        </td>
+
+    </tr>
+}
+
+</table>

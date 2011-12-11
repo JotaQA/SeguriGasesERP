@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models
+END
+Venta.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/segurigases/!svn/ver/14/SeguriGasesERP/SeguriGasesERP/Models/Venta.cs
+END
+ProductoSucursal.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/ProductoSucursal.cs
+END
+OrdenDeCompra.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models/OrdenDeCompra.cs
+END
+Cliente.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Models/Cliente.cs
+END
+CilindroDotacion.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/segurigases/!svn/ver/16/SeguriGasesERP/SeguriGasesERP/Models/CilindroDotacion.cs
+END
+Factura.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/Factura.cs
+END
+Pago.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/Pago.cs
+END
+SeguriGasesEntities.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/segurigases/!svn/ver/16/SeguriGasesERP/SeguriGasesERP/Models/SeguriGasesEntities.cs
+END
+ProductoOrden.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/segurigases/!svn/ver/14/SeguriGasesERP/SeguriGasesERP/Models/ProductoOrden.cs
+END
+PerfilUsuario.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models/PerfilUsuario.cs
+END
+CuentaCredito.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/segurigases/!svn/ver/18/SeguriGasesERP/SeguriGasesERP/Models/CuentaCredito.cs
+END
+ProductoTraslado.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/segurigases/!svn/ver/14/SeguriGasesERP/SeguriGasesERP/Models/ProductoTraslado.cs
+END
+SegurigasesERPInitializer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/segurigases/!svn/ver/16/SeguriGasesERP/SeguriGasesERP/Models/SegurigasesERPInitializer.cs
+END
+ProductoVenta.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/ProductoVenta.cs
+END
+Categoria.cs
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/segurigases/!svn/ver/10/SeguriGasesERP/SeguriGasesERP/Models/Categoria.cs
+END
+Producto.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/segurigases/!svn/ver/17/SeguriGasesERP/SeguriGasesERP/Models/Producto.cs
+END
+AccountModels.cs
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/segurigases/!svn/ver/3/SeguriGasesERP/SeguriGasesERP/Models/AccountModels.cs
+END
+OrdenTraslado.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models/OrdenTraslado.cs
+END
+CarritoDeCompras.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/segurigases/!svn/ver/18/SeguriGasesERP/SeguriGasesERP/Models/CarritoDeCompras.cs
+END
+Sucursal.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models/Sucursal.cs
+END
+Cilindro.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models/Cilindro.cs
+END
+Carrito.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/Carrito.cs
+END
+Unidad.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/Unidad.cs
+END
+Proveedor.cs
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/segurigases/!svn/ver/15/SeguriGasesERP/SeguriGasesERP/Models/Proveedor.cs
+END
+MovimientoDotacion.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/segurigases/!svn/ver/13/SeguriGasesERP/SeguriGasesERP/Models/MovimientoDotacion.cs
+END
+MovimientoAlmacen.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/segurigases/!svn/ver/14/SeguriGasesERP/SeguriGasesERP/Models/MovimientoAlmacen.cs
+END
+DotacionCilindros.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/segurigases/!svn/ver/16/SeguriGasesERP/SeguriGasesERP/Models/DotacionCilindros.cs
+END

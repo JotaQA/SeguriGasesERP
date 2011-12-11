@@ -1,0 +1,59 @@
+﻿@model SeguriGasesERP.Models.Proveedor
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RFC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RFC)
+            @Html.ValidationMessageFor(model => model.RFC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RazonSocial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RazonSocial)
+            @Html.ValidationMessageFor(model => model.RazonSocial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contacto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contacto)
+            @Html.ValidationMessageFor(model => model.Contacto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefono)
+            @Html.ValidationMessageFor(model => model.Telefono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nextel)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nextel)
+            @Html.ValidationMessageFor(model => model.Nextel)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Direccion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Direccion)
+            @Html.ValidationMessageFor(model => model.Direccion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>      

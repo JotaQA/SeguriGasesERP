@@ -1,0 +1,19 @@
+﻿@model SeguriGasesERP.Models.DotacionCilindros
+
+@{
+    ViewBag.Title = "Ampliar";
+}
+
+<h2>Ampliar Dotacion</h2>
+Cliente: <b>@Model.Cliente.NombreCliente</b>
+
+@using (@Html.BeginForm())
+{
+    <label for="IdCilindro">Cilindro</label>
+     @Html.DropDownList("IdCilindro", new SelectList(ViewBag.Cilindros as System.Collections.IEnumerable, "ID", "TipoCilindro"))
+    <label for="Deposito">Deposito</label>
+    <input type="text" name="Deposito" />
+    
+    <input type="submit" value="Asignar" />
+
+}

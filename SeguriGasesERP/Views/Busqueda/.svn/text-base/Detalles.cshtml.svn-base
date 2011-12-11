@@ -1,0 +1,40 @@
+﻿@model SeguriGasesERP.Models.Producto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="display-label">Clave</div>
+    <div class="display-field">@Model.Clave</div>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">@Model.Nombre</div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">@Model.Descripcion</div>
+
+    <div class="display-label">FotoUrl</div>
+    <div class="display-field">@Model.FotoUrl</div>
+
+    <div class="display-label">PrecioLista</div>
+    <div class="display-field">@String.Format("{0:F}", Model.PrecioLista)</div>
+
+    <div class="display-label">Activo</div>
+    <div class="display-field">@Model.Activo</div>
+
+    <div class="display-label">IdUnidad</div>
+    <div class="display-field">@Model.IdUnidad</div>
+
+    <div class="display-label">IdCategoria</div>
+    <div class="display-field">@Model.IdCategoria</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>
+

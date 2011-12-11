@@ -1,0 +1,52 @@
+﻿@model SeguriGasesERP.Models.Sucursal
+
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DomicilioFiscal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DomicilioFiscal)
+            @Html.ValidationMessageFor(model => model.DomicilioFiscal)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telefono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telefono)
+            @Html.ValidationMessageFor(model => model.Telefono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RFC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RFC)
+            @Html.ValidationMessageFor(model => model.RFC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cuenta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cuenta)
+            @Html.ValidationMessageFor(model => model.Cuenta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>

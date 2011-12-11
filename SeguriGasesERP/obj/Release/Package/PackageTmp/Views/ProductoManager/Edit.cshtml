@@ -1,0 +1,25 @@
+﻿@model SeguriGasesERP.Models.Producto
+
+@{
+    ViewBag.Title = "Editar - " + Model.Nombre;
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Editar Producto</legend>
+        @Html.EditorForModel() 
+        <p> <input type="submit" value="Guardar" /> </p>
+       
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Regresar al Listado", "Index")
+</div>
+

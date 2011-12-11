@@ -1,0 +1,93 @@
+﻿@model SeguriGasesERP.Models.CuentaCredito
+
+@{
+    ViewBag.Title = "Abonar";
+}
+
+<h2>Abonar</h2>
+
+<fieldset>
+    <legend>Cuenta de Credito de &nbsp; @ViewBag.Cliente.NombreCliente</legend>
+
+
+    <div class="display-label">DiasLimite</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasLimite) Días
+    </div>
+
+    <div class="display-label">MontoLimite</div>
+    <div class="display-field">
+        $@Html.DisplayFor(model => model.MontoLimite)
+    </div>
+
+    <div class="display-label">Deuda</div>
+    <div class="display-field">
+        $@ViewBag.Deuda
+    </div>
+
+
+    <h3>
+       Venta
+    </h3>
+
+    <div class="display-label">Folio</div>
+    <div class="display-field">
+        @ViewBag.Venta.ClaveCFD
+    </div>
+    <div class="display-label">Total</div>
+    <div class="display-field">
+        $@ViewBag.Venta.Total
+    </div>
+
+     @if (ViewBag.Venta.Liquidado == false)
+     {
+        <h3>Abono a cuenta</h3>
+         using (Html.BeginForm())
+         {
+            <input name="idCuenta" type="hidden" value="@Model.ID" />
+            <input name="idVenta"  type="hidden" value="@ViewBag.Venta.ID" />
+            <label for="Monto">Monto:</label>
+            <input id="Monto" name="Monto" type="text" />
+        
+            <input type="submit" value="Abonar" />
+
+         }
+     }
+     else
+     {
+        <br />
+            <span style="color:Green; font-weight:bold;">Venta Liquidada</span>
+     }
+    <h3>Historial De Pagos</h3>
+    <table>
+          <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+               Monto
+            </th>
+          </tr>
+          @{ decimal montos = 0; }
+          @foreach (SeguriGasesERP.Models.Pago pago in ViewBag.Pagos)
+          {
+              <tr>
+                <td>
+                    @pago.FechaPago
+                </td>
+                <td>
+                    @pago.Monto
+                </td>
+              </tr>
+              
+               montos += pago.Monto;
+          }
+    </table>
+     <br />
+            <span style="color:Green; font-weight:bold;">Total de Abonos / Total Venta <br />  $@montos /  $@ViewBag.Venta.Total </span>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>

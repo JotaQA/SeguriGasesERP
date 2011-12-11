@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Producto>
+
+@{
+    ViewBag.Title = "Busqueda";
+}
+
+<h2>Busqueda</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Clave
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            FotoUrl
+        </th>
+        <th>
+            PrecioLista
+        </th>
+        <th>
+            Activo
+        </th>
+        <th>
+            IdUnidad
+        </th>
+        <th>
+            IdCategoria
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @item.Clave
+        </td>
+        <td>
+            @item.Nombre
+        </td>
+        <td>
+            @item.Descripcion
+        </td>
+        <td>
+            @item.FotoUrl
+        </td>
+        <td>
+            @String.Format("{0:F}", item.PrecioLista)
+        </td>
+        <td>
+            @item.Activo
+        </td>
+        <td>
+            @item.IdUnidad
+        </td>
+        <td>
+            @item.IdCategoria
+        </td>
+    </tr>
+}
+
+</table>
+

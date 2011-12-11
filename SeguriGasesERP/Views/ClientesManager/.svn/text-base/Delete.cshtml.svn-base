@@ -1,0 +1,93 @@
+﻿@model SeguriGasesERP.Models.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">NombreCliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreCliente)
+    </div>
+
+    <div class="display-label">Contacto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contacto)
+    </div>
+
+    <div class="display-label">Telefono</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">RfcReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RfcReceptor)
+    </div>
+
+    <div class="display-label">NombreReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreReceptor)
+    </div>
+
+    <div class="display-label">CalleReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CalleReceptor)
+    </div>
+
+    <div class="display-label">NoExteriorReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoExteriorReceptor)
+    </div>
+
+    <div class="display-label">NoInteriorReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoInteriorReceptor)
+    </div>
+
+    <div class="display-label">ColoniaReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ColoniaReceptor)
+    </div>
+
+    <div class="display-label">LocalidadReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocalidadReceptor)
+    </div>
+
+    <div class="display-label">ReferenciaReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReferenciaReceptor)
+    </div>
+
+    <div class="display-label">MunicipioReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MunicipioReceptor)
+    </div>
+
+    <div class="display-label">EstadoReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EstadoReceptor)
+    </div>
+
+    <div class="display-label">CodigoPostalReceptor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodigoPostalReceptor)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Regresar a la Lista", "Index")
+    </p>
+}

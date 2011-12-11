@@ -1,0 +1,224 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.CuentaCredito>
+
+@{
+    ViewBag.Title = "Reporte de Cartera";
+}
+
+<h2>Reporte de Cartera</h2>
+
+
+<table>
+    <tr>
+        <th>
+            Factura
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Debe
+        </th>
+        <th>
+            Dias Vencido
+        </th>
+        <th>
+            Fecha Vencimiento
+        </th>
+        <th>
+            Saldo por vencer
+        </th>
+        <th>
+            1 A 30
+        </th>
+        <th>
+            Mas de 30
+        </th>
+        <th>
+            Mas de 60
+        </th>
+        <th>
+            Mas de 90
+        </th>
+        <th>
+            Mas de 120
+        </th>
+        <th>
+            Mas de 300
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+
+    int i;
+    decimal vencer = 0;
+        decimal m30 = 0;
+        decimal m60 = 0;
+        decimal m90 = 0;
+        decimal m120 = 0;
+        decimal m300 = 0;
+        decimal mas300 = 0;
+
+    for (i = 0; i < item.Ventas.Count; i++)
+    {
+        SeguriGasesERP.Models.Venta venta = item.Ventas[i];
+        
+        
+        if (venta.getDeuda() > 0)
+        {
+           
+        <tr>
+            <td>
+                @venta.ClaveCFD
+            </td>
+            <td>
+                @item.Cliente.NombreCliente
+            </td>
+            <td>
+               $@venta.getDeuda()
+            </td>
+            <td>
+                @venta.getDiasVencido(item.ID)
+            </td>
+            <td>
+                @venta.getFechaVencimiento(item.ID)            
+            </td>
+            <td>
+             @if(venta.getDiasVencido(item.ID) == 0) {
+                 vencer += venta.getDeuda();
+                         <text>$</text>@venta.getDeuda() 
+                          
+                    }
+               
+            </td>
+            <td>
+                @if(venta.getDiasVencido(item.ID) <= 30 && venta.getDiasVencido(item.ID) > 0) {
+                    m30 += venta.getDeuda();
+                         <text>$</text>@venta.getDeuda() 
+                }
+                    
+            </td>
+            <td>
+                @if (venta.getDiasVencido(item.ID) <= 60 && venta.getDiasVencido(item.ID) > 30)
+                {
+                    m60 += venta.getDeuda();
+                        <text>$</text>@venta.getDeuda()  
+                }
+                    
+            </td>
+            <td>
+                @if (venta.getDiasVencido(item.ID) <= 90 && venta.getDiasVencido(item.ID) > 60)
+                {
+                    m90 += venta.getDeuda();     
+                         <text>$</text>@venta.getDeuda()   
+                }
+                    
+            </td>
+            <td>
+                @if (venta.getDiasVencido(item.ID) <= 120 && venta.getDiasVencido(item.ID) > 90)
+                {
+                    m120 += venta.getDeuda();
+                        
+                         <text>$</text>@venta.getDeuda()  
+                }
+                    
+            </td>
+            <td>
+                @if (venta.getDiasVencido(item.ID) <= 300 && venta.getDiasVencido(item.ID) > 120)
+                {
+                    m300 += venta.getDeuda();
+                        <text>$</text>@venta.getDeuda()   
+                }
+                    
+            </td>
+            <td>
+                @if (venta.getDiasVencido(item.ID) > 300)
+                {
+                    mas300 += venta.getDeuda();
+                        <text>$</text>@venta.getDeuda()
+                }
+                    
+            </td>
+         </tr>
+        }
+    }
+    if (item.Ventas.Count > 0)
+    {
+    <tr>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+             <b>  $@item.getDeuda()</b>
+            </td>
+            <td>
+               
+            </td>
+            <td>
+                          
+            </td>
+            <td>
+               @if(vencer > 0)
+               {
+                  <b> $@vencer </b>
+               }
+            </td>
+            <td>
+               @if(m30 > 0)
+               {
+                  <b> $@m30 </b>
+               }
+            </td>
+            <td>
+               @if(m60 > 0)
+               {
+                  <b> $@m60 </b>
+               }
+            </td>
+            <td>
+               @if(m90 > 0)
+               {
+                  <b> $@m90 </b>
+               }
+            </td>
+            <td>
+               @if(m120 > 0)
+               {
+                  <b> $@m120 </b>
+               }
+            </td>
+            <td>
+               @if(m300 > 0)
+               {
+                  <b> $@m300 </b>
+               }
+            </td>
+            <td>
+               @if(mas300 > 0)
+               {
+                  <b> $@mas300 </b>
+               }
+            </td>
+            <td>
+               
+            </td>
+         </tr>
+    <tr>
+       <td> </td>
+       <td> </td>
+       <td> </td>
+       <td> </td>
+       <td> </td>
+       <td> </td>
+    </tr>
+    }
+       
+}
+     
+
+
+</table>

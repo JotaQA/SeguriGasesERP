@@ -1,0 +1,59 @@
+﻿@model SeguriGasesERP.Models.OrdenTraslado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>OrdenTraslado</legend>
+
+    <div class="display-label">Fecha Generada</div>
+    <div class="display-field">@String.Format("{0:g}", Model.FechaGenerada)</div>
+
+    <div class="display-label">Sucursal Origen</div>
+    <div class="display-field">@ViewBag.SucursalOrigen.Nombre</div>
+
+    <div class="display-label">Sucursal Destino</div>
+    <div class="display-field">@ViewBag.SucursalDestino.Nombre</div>
+
+
+     @using (Html.BeginForm())
+    {
+        <table>
+            <tr>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Producto
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Productos)
+            {
+                <tr>
+                    <td>
+                        <input type="text" name="cantidad@(item.IdProducto)" id="cantidad@(item.IdProducto)" value="@(item.cantidad)" />
+                    </td>
+                    <td>
+                        @item.Producto.Nombre
+                    </td>
+                </tr>   
+                
+            }
+        
+        </table>
+        if (ViewBag.Permiso == 1)
+        {
+          <input type="submit" value="Ingresar"/>
+        }
+    }
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>
+

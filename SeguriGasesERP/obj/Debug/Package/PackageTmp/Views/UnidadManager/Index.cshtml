@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Unidad>
+
+@{
+    ViewBag.Title = "Indice de Unidades";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Nombre
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) 
+        </td>
+        <td>
+            @item.Nombre
+        </td>
+    </tr>
+}
+
+</table>
+

@@ -1,0 +1,162 @@
+10
+
+dir
+15
+https://subversion.assembla.com/svn/segurigases/SeguriGasesERP/SeguriGasesERP/Views
+https://subversion.assembla.com/svn/segurigases
+
+
+
+2011-04-25T23:53:25.081537Z
+14
+jmanuelh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bbb7e3ed-b7a1-4aef-89ed-61d2af8da740
+
+_ViewStart.cshtml
+file
+
+
+
+
+2011-04-27T04:34:57.295800Z
+69e468f28dacc998525ae89a24bc9fa9
+2011-03-04T05:58:54.688527Z
+3
+jmanuelh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+55
+
+Web.config
+file
+
+
+
+
+2011-04-27T04:34:57.297800Z
+d00fa728c4ce128c9b3b6060bbb30440
+2011-03-04T05:58:54.688527Z
+3
+jmanuelh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2873
+
+UsuariosAdmin
+dir
+
+Dotaciones
+dir
+
+Home
+dir
+
+TrasladoProducto
+dir
+
+ProductoManager
+dir
+
+Account
+dir
+
+SucursalManager
+dir
+
+OrdenesDeCompras
+dir
+
+UnidadManager
+dir
+
+Ventas
+dir
+
+ProveedorManager
+dir
+
+ClientesManager
+dir
+
+CarritoDeCompras
+dir
+
+Cilindro
+dir
+
+MovimientosInventarioManager
+dir
+
+Reportes
+dir
+
+Compras
+dir
+
+Clientes
+dir
+
+Shared
+dir
+
+Busqueda
+dir
+
+CuentasCredito
+dir
+
+CategoriasManager
+dir
+

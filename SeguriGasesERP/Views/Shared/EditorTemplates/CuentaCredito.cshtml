@@ -1,0 +1,29 @@
+﻿@model SeguriGasesERP.Models.CuentaCredito
+
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.FechaCreado)
+
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DiasLimite)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DiasLimite)
+            @Html.ValidationMessageFor(model => model.DiasLimite)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MontoLimite)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MontoLimite)
+            @Html.ValidationMessageFor(model => model.MontoLimite)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCliente)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdCliente", new SelectList(ViewBag.Clientes as System.Collections.IEnumerable, "ID", "NombreCliente", Model.IdCliente))
+        </div>

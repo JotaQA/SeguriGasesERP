@@ -1,0 +1,36 @@
+﻿@model SeguriGasesERP.Models.PerfilUsuario
+
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Username", new SelectList(ViewBag.Usuarios as System.Collections.IEnumerable, "UserName", "UserName", Model.Username))
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Apellidos)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Apellidos)
+            @Html.ValidationMessageFor(model => model.Apellidos)
+        </div>
+        
+        <div class="editor-label">
+            <label for="Sucursal">Sucursal Default</label>
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdSucursal", new SelectList(ViewBag.Sucursales as System.Collections.IEnumerable, "ID", "Nombre"))
+        </div>
+
+      

@@ -1,0 +1,8 @@
+﻿Los roles presentes para este sistema son los siguientes
+
+Administrador - Tiene accesso a TODO
+Gerente - Tiene acceso a los reportes
+Almacenista - Tiene Acesso a Ordenes de compra, traslado de productos y dotaciones
+Facturista - Tiene Acesso a Facturar
+Creditista - Tiene Aceso a la Creacion de cuentas de crédito, reportes de crédito y abono a cuenta
+Capturista - Tiene Acceso a la Alta y cambios de Productos, Clientes, Proveedores, Unidades y Categorias

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.MovimientoAlmacen>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            FechaMovimiento
+        </th>
+        <th>
+            TipoMovimiento
+        </th>
+        <th>
+            DescripcionMovimiento
+        </th>
+        <th>
+            Count
+        </th>
+        <th>
+            IdSucursal
+        </th>
+        <th>
+            IdProducto
+        </th>
+        <th>
+            IdOrednCompra
+        </th>
+        <th>
+            IdVenta
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaMovimiento)
+        </td>
+        <td>
+            @item.TipoMovimiento
+        </td>
+        <td>
+            @item.DescripcionMovimiento
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Count)
+        </td>
+        <td>
+            @item.IdSucursal
+        </td>
+        <td>
+            @item.IdProducto
+        </td>
+        <td>
+            @item.IdOrednCompra
+        </td>
+        <td>
+            @item.IdVenta
+        </td>
+    </tr>
+}
+
+</table>
+

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Venta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Folio CFD
+        </th>
+        
+        <th>
+            Subtotal
+        </th>
+        <th>
+            Total
+        </th>       
+        <th>
+            FechaVenta
+        </th>
+        <th>
+            Liquidado
+        </th>
+        <th>
+            Sucursal
+        </th>
+        <th>
+            Cliente
+        </th>        
+        <th>
+            Realizó
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClaveCFD)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Subtotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaVenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Liquidado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.NombreCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Cancelar", "Cancelar", new { id=item.ID }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Mandar A Credito", "MandarACredito/"+item.ID, "CuentasCredito")
+        </td>
+    </tr>
+}
+
+</table>

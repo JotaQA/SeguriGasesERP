@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.OrdenTraslado>
+
+@{
+    ViewBag.Title = "Index de Traslados";
+}
+
+<h2>Index</h2>
+
+<p>
+    <form action="TrasladoProducto/Create" method="get">
+       <label for="NoProductos"> Número de productos a trasladar</label>
+      <input type="text" name="NoProductos" id="NoProductos" size="4" />
+      <input type="submit" value="Crear" />
+   </form>
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Fecha Generada
+        </th>
+        <th>
+            Sucursal Origen
+        </th>
+        <th>
+            Sucursal Destino
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Ingresar", "Details", new { id=item.ID })
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaGenerada)
+        </td>
+        <td>
+            @item.SucursalOrigen.Nombre
+        </td>
+        <td>
+            @item.SucursalDestino.Nombre
+        </td>
+    </tr>
+}
+
+</table>
+

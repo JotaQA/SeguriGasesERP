@@ -1,0 +1,103 @@
+﻿@model SeguriGasesERP.ViewModels.CarritoDeComprasViewModel
+
+@{
+    ViewBag.Title = "Confirmar";
+}
+
+
+
+<h2>Confirmar</h2>
+
+
+<table>
+<tr>
+<td>Cliente:</td> <td>@ViewBag.Cliente.NombreCliente</td>
+</tr>
+<tr>
+<td>Razón Social:</td> <td>@ViewBag.Cliente.NombreReceptor </td>
+</tr>
+<tr>
+<td>RFC:</td> <td>@ViewBag.Cliente.RfcReceptor </td>
+</tr>
+<tr>
+<td>Dirección:</td> <td>@ViewBag.Cliente.CalleReceptor @ViewBag.Cliente.NoExteriorReceptor @ViewBag.Cliente.NoInteriorReceptor @ViewBag.Cliente.ColoniaReceptor</td>
+</tr>
+
+</table>
+@using (Html.BeginForm())
+{
+<table>
+    <tr>
+        <th>
+           Producto
+        </th>
+        <th>Cantidad</th>
+        <th>
+           Precio
+        </th>
+    </tr>
+
+   
+   @{bool flag = false;}
+@foreach (var item in Model.ElementosCarrito)
+{
+
+
+
+    if (@item.Existencia > 0)
+    {
+    <tr id="row-@item.RecordId">
+        
+            <td>
+               @item.Producto.Nombre
+            </td>
+            
+          
+            <td>
+              
+                <input class="left" id="Cantidad-@item.ProductoId" name="Cantidad-@item.ProductoId" size="2"/> <div id="cantMax">[MAX: @item.Existencia]</div>
+                
+            </td>
+
+            <td>
+                <input class="left" id="Precio-@item.ProductoId" name="Precio-@item.ProductoId" size="4" value="@item.PrecioVenta"/><div id="cantMax">[Lista: $@item.Producto.PrecioLista]</div>
+            </td>
+            
+      
+       
+    </tr>
+    }
+    else
+    {
+        flag = true;
+  <tr id="row-@item.RecordId" class="no-disponible" style="background-color:Red;">
+        
+            <td>
+               @item.Producto.Nombre
+            </td>
+            
+          
+            <td>
+                No Disponible | @item.Existencia
+            </td>
+
+            <td>
+                @item.PrecioVenta
+            </td>
+            
+      
+       
+    </tr>
+    }
+
+}
+
+ </table>
+ <input type="hidden" name="IdSucursal" id="IdSucursal" value="@ViewBag.IdSucursal" />
+ <input name="IdClient" id="IdClient" type="hidden" value="@ViewBag.IdCliente" />
+ <input name="MisHuevos" id="MisHuevos" type="hidden" value="1" />
+ if (flag == false)
+ {
+    <input type="submit" value="Confirmar" />
+ }
+}

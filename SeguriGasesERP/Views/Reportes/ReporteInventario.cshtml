@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.ProductoSucursal>
+
+@{
+    ViewBag.Title = "ReporteInventario";
+}
+
+<h2>ReporteInventario</h2>
+
+<h3> Costo sin iva = @ViewBag.Costo</h3>
+<h3> Costo con iva = @ViewBag.CostoIva</h3>
+<h3> Precio venta sin iva = @ViewBag.Venta</h3>
+<h3> Precio venta con iva = @ViewBag.VentaIva</h3>
+@Html.ActionLink("Solo Forjadores", "../Reportes/ReporteInventario", new { sucursal = 1 })
+@Html.ActionLink("Solo Satelite", "../Reportes/ReporteInventario", new { sucursal = 2 })
+
+<table>
+    <tr>
+        <th>
+            Sucursal
+        </th>
+        <th>
+            Clave Producto
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Existencia
+        </th>
+        <th>
+            Costo
+        </th>
+        <th>
+            Costo IVA
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Costo)
+        </td>
+        <td>
+            @Decimal.Round(item.Producto.Costo * (decimal)1.16, 2)
+        </td>
+    </tr>
+}
+
+</table>

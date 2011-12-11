@@ -1,0 +1,95 @@
+﻿@model SeguriGasesERP.Models.CuentaCredito
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CuentaCredito</legend>
+
+    <div class="display-label">DiasLimite</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiasLimite) Días
+    </div>
+
+    <div class="display-label">MontoLimite</div>
+    <div class="display-field">
+        $@Html.DisplayFor(model => model.MontoLimite)
+    </div>
+
+    <div class="display-label">Deuda</div>
+    <div class="display-field">
+        $@ViewBag.Deuda
+    </div>
+
+
+    <h3>
+       Estado de cuenta
+    </h3>
+
+    @{int i = 0;}
+    
+    @foreach(SeguriGasesERP.Models.Venta venta in ViewBag.Ventas)
+    {
+        <fieldset>
+      <h4>
+        
+         Factura: @venta.ClaveCFD
+         <br />
+         Fecha: @venta.FechaVenta
+         <br />
+         Total: @venta.Total
+         @if (venta.Liquidado == false)
+         {
+             <br />
+              @Html.ActionLink("Abonar Pago", "Abonar", new { idCuenta = Model.ID, idVenta = venta.ID })
+         }
+         else
+         {
+             <br />
+            <span style="color:Green; font-weight:bold;">Venta Liquidada</span>
+         }
+      </h4>
+         
+        <table>
+          <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+               Monto
+            </th>
+          </tr>
+         
+          @{ decimal montos = 0; }
+          @foreach (SeguriGasesERP.Models.Pago pago in ViewBag.Pagos[i])
+          {
+              <tr>
+                <td>
+                    @pago.FechaPago
+                </td>
+                <td>
+                    @pago.Monto
+                </td>
+              </tr>
+              
+               montos += pago.Monto;
+          }
+         
+        </table>
+        
+        <br />
+            <span style="color:Green; font-weight:bold;">Total de Abonos / Total Venta <br />  $@montos /  $@venta.Total </span>
+        </fieldset>
+                                                                                                       
+                                                                                                       i++;
+    }
+
+ 
+</fieldset>
+<p>
+
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>

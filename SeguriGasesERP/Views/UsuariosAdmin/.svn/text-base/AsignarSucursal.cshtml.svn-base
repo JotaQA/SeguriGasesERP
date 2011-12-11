@@ -1,0 +1,31 @@
+﻿@model SeguriGasesERP.Models.PerfilUsuario
+
+@{
+    ViewBag.Title = "Asignar Sucursal";
+}
+
+<h2>Asignar Sucursal</h2>
+
+<fieldset>
+        <legend>Asignación de sucursal para el usuario @Model.Username</legend>
+
+        @using (Html.BeginForm())
+        {
+            <div class="editor-label">
+                <label for="IdSucursal">Sucursal</label>
+            </div>
+
+            <div class="editor-field">
+                @Html.DropDownList("IdSucursal", new SelectList(ViewBag.Sucursales as System.Collections.IEnumerable, "ID", "Nombre"))
+            </div>
+            <input type="hidden" name="IdUsuario" id="IdUsuario" value="@Model.ID" />
+            
+            <input type="submit" value="Asignar" />
+
+            
+            
+            
+        }
+
+</fieldset>
+

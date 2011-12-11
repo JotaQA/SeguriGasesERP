@@ -1,0 +1,79 @@
+﻿@model SeguriGasesERP.Models.Venta
+
+@{
+    ViewBag.Title = "MandarACredito";
+}
+
+<h2>MandarACredito</h2>
+
+<fieldset>
+    <legend>Venta</legend>
+
+    <div class="display-label">ClaveCFD</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClaveCFD)
+    </div>
+
+    <div class="display-label">Moneda</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Moneda)
+    </div>
+
+    <div class="display-label">Subtotal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Subtotal)
+    </div>
+
+    <div class="display-label">Total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Total)
+    </div>
+
+    <div class="display-label">ImporteLetra</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ImporteLetra)
+    </div>
+
+    <div class="display-label">TotalImpuestosRetenidos</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalImpuestosRetenidos)
+    </div>
+
+    <div class="display-label">TotalImpuestosTrasladados</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalImpuestosTrasladados)
+    </div>
+
+    <div class="display-label">FechaVenta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaVenta)
+    </div>
+
+    
+
+    <div class="display-label">Sucursal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sucursal.Nombre)
+    </div>
+
+    <div class="display-label">IdCliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cliente.NombreCliente)
+    </div>
+
+    <div class="display-label">Vendido Por:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.usuario)
+    </div>
+
+    @using (Html.BeginForm())
+    {
+       <input type="hidden" name="id" value="@Model.ID" />
+       <input type="submit" value="Confirmar" />
+    }
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

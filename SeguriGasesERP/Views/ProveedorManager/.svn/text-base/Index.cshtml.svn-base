@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.Proveedor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            RFC
+        </th>
+        <th>
+            Razon Social
+        </th>
+        <th>
+            Contacto
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Nextel
+        </th>
+        <th>
+            Direccion
+        </th>
+        <th>
+            Email
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @item.RFC
+        </td>
+        <td>
+            @item.RazonSocial
+        </td>
+        <td>
+            @item.Contacto
+        </td>
+        <td>
+            @item.Telefono
+        </td>
+        <td>
+            @item.Nextel
+        </td>
+        <td>
+            @item.Direccion
+        </td>
+        <td>
+            @item.Email
+        </td>
+    </tr>
+}
+
+</table>
+

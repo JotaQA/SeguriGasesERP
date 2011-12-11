@@ -1,0 +1,72 @@
+﻿@model SeguriGasesERP.Models.Producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="display-label">Clave</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Clave)
+    </div>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+    <div class="display-label">PrecioLista</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioLista)
+    </div>
+
+    <div class="display-label">Costo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Costo)
+    </div>
+
+    <div class="display-label">Activo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Activo)
+    </div>
+
+    <div class="display-label">Unidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdUnidad)
+    </div>
+
+    <div class="display-label">Categoria</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCategoria)
+    </div>
+
+    <h3>Existencias:</h3>
+    @{ int i = 0; }
+    @foreach (SeguriGasesERP.Models.Sucursal Sucursal in ViewBag.Sucursales)
+    {
+        <b>@Sucursal.Nombre</b>
+        <br />
+        <text> Existencia = @ViewBag.Existencias[i] </text>
+        <br />
+        <br />        
+        
+        i++;
+    }
+
+    @Html.ActionLink("Agregar al Carrito", "../CarritoDeCompras/AgregarAlCarrito/", new { id= Model.ID })
+
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Regresar a la Lista", "Index")
+</p>

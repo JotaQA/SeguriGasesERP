@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/SeguriGasesERP_deploy" />
+  <setParameter name="ApplicationServices-Web.config Connection String" value="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true;MultipleActiveResultSets=True" />
+  <setParameter name="SeguriGasesEntities-Web.config Connection String" value="Server=.\SQLEXPRESS;&#xD;&#xA;     Database=SeguriGasesERP;Trusted_Connection=true" />
+  <setParameter name="SeguriGasesERPEntities-Web.config Connection String" value="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=.\SQLEXPRESS;Initial Catalog=SeguriGasesERP;Integrated Security=True;MultipleActiveResultSets=True&quot;" />
+</parameters>

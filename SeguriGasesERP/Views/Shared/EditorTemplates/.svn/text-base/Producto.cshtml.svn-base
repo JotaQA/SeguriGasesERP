@@ -1,0 +1,79 @@
+﻿@model SeguriGasesERP.Models.Producto
+
+<script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Clave)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Clave)
+            @Html.ValidationMessageFor(model => model.Clave)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descripcion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FotoUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FotoUrl)
+            @Html.ValidationMessageFor(model => model.FotoUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrecioLista)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PrecioLista)
+            @Html.ValidationMessageFor(model => model.PrecioLista)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Costo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Costo)
+            @Html.ValidationMessageFor(model => model.Costo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Activo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Activo)
+            @Html.ValidationMessageFor(model => model.Activo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Unidad)
+        </div>
+        <div class="editor-field">
+             @Html.DropDownList("IdUnidad", new SelectList(ViewBag.Unidades as System.Collections.IEnumerable, "ID", "Nombre", Model.IdUnidad))
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Categoria)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdCategoria", new SelectList(ViewBag.Categorias as System.Collections.IEnumerable, "ID", "Nombre", Model.IdCategoria))
+        </div>
+       

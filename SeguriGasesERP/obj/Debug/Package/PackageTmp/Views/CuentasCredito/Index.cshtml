@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SeguriGasesERP.Models.CuentaCredito>
+
+@{
+    ViewBag.Title = "Indice de Cuentas de Credito";
+}
+
+<h2>Index</h2>
+
+<form action="/CuentasCredito/" method="post">
+        <table>
+            <tr> 
+                <td>Busqueda:</td>
+                <td>
+                    @Html.TextBox("word")
+                    @Html.ValidationMessage("Name")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" value="Buscar" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            FechaCreado
+        </th>
+        <th>
+            DiasLimite
+        </th>
+        <th>
+            MontoLimite
+        </th>
+        <th>
+            Cliente
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Estado de Cuenta", "Details", new { id=item.ID })
+        </td>
+        <td>
+            @String.Format("{0:g}", item.FechaCreado)
+        </td>
+        <td>
+            @item.DiasLimite
+        </td>
+        <td>
+            @String.Format("{0:F}", item.MontoLimite)
+        </td>
+        <td>
+            @item.Cliente.NombreCliente
+        </td>
+    </tr>
+}
+
+</table>
+

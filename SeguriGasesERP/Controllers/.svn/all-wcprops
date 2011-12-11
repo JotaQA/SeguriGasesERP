@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/segurigases/!svn/ver/14/SeguriGasesERP/SeguriGasesERP/Controllers
+END
+BusquedaController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/BusquedaController.cs
+END
+CategoriasManagerController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/CategoriasManagerController.cs
+END
+CuentasCreditoController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/CuentasCreditoController.cs
+END
+DefaultDataController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/DefaultDataController.cs
+END
+UsuariosAdminController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/UsuariosAdminController.cs
+END
+HomeController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/segurigases/!svn/ver/17/SeguriGasesERP/SeguriGasesERP/Controllers/HomeController.cs
+END
+DotacionesController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/DotacionesController.cs
+END
+TrasladoProductoController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/TrasladoProductoController.cs
+END
+ProductoManagerController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/ProductoManagerController.cs
+END
+AccountController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/segurigases/!svn/ver/3/SeguriGasesERP/SeguriGasesERP/Controllers/AccountController.cs
+END
+SucursalManagerController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/SucursalManagerController.cs
+END
+OrdenesDeComprasController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/OrdenesDeComprasController.cs
+END
+UnidadManagerController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/UnidadManagerController.cs
+END
+ProveedorManagerController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/ProveedorManagerController.cs
+END
+CarritoDeComprasController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/CarritoDeComprasController.cs
+END
+CilindroController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/CilindroController.cs
+END
+ReportesController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/ReportesController.cs
+END
+ComprasController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/ComprasController.cs
+END
+ClientesController.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/segurigases/!svn/ver/20/SeguriGasesERP/SeguriGasesERP/Controllers/ClientesController.cs
+END
