@@ -4,6 +4,16 @@
     ViewBag.Title = "búsqeda de Productos";
 }
 
+<style type="text/css">
+.seleccionado A:link {text-decoration: none; color: Black; font-weight: bolder}
+
+.seleccionado A:active {text-decoration: none; color: Black; font-weight: bolder}
+.seleccionado A:hover {text-decoration: none; color: Black; font-weight: bolder}
+
+.normal A:visited {color: Blue}
+
+</style>
+
 <h2>Búsqueda de Productos</h2>
 
 <p>
@@ -31,11 +41,11 @@
 {
     if (i == ViewBag.CurrentPage)
     {
-        @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i }, new { weight = "bold" });
+        @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i }, new { @class = "seleccionado" });
     }
     else
     {
-        @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i });
+        @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i }, new { @class = "normal" });
     }
 
 
