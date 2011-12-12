@@ -27,7 +27,7 @@
         </table>
     }
 </p>
-@for (int i = 0; i < ViewBag.TotalPages; i++)
+@for (int i = 0; i <= ViewBag.TotalPages; i++)
 {
     if (i == ViewBag.CurrentPage)
     {
@@ -35,7 +35,7 @@
     }
     else
     {
-        @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i }, new { @class = "normal" });
+        @Html.ActionLink(i + "", "Index", "Busqueda", new { page = i }, new { @class = "normal" });
         <text> &nbsp; </text>
     }
 
