@@ -16,7 +16,7 @@ namespace SeguriGasesERP.Controllers
 
         #region Globals
 
-        private const int resultsPerPage = 10;
+        private const int resultsPerPage = 20;
 
         #endregion
 

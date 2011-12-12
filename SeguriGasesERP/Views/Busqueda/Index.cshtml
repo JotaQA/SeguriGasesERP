@@ -31,11 +31,12 @@
 {
     if (i == ViewBag.CurrentPage)
     {
-        @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i }, new { @class = "seleccionado" });
+        <text> @i &nbsp; </text>
     }
     else
     {
         @Html.ActionLink(i + " ", "Index", "Busqueda", new { page = i }, new { @class = "normal" });
+        <text> &nbsp; </text>
     }
 
 
