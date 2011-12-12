@@ -31,10 +31,13 @@ namespace SeguriGasesERP.Controllers
             page = page == null ? 0 : (int) page;
             
             //Numero de resultados a ignorar
-            int elementsSkip = (int) page * resultsPerPage;
+            int elementsSkip = (int) page * resultsPerPage;            
 
             //Sacamos el total de productos para realizar la paginacion
             int numProductos = db.Productos.Count();
+
+            //Numero de paginas
+            double totalPages = (numProductos/resultsPerPage);           
 
             //Tomamos 10 productos a partir del numero de pagina, esto es page * 10
             List<Producto> productos = db.Productos.OrderBy(p => p.Nombre).Skip(elementsSkip).Take(resultsPerPage).ToList();
@@ -49,6 +52,7 @@ namespace SeguriGasesERP.Controllers
             }
 
             ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = Math.Ceiling(totalPages);
 
             return View(productos);
         }
