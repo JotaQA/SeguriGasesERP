@@ -366,3 +366,12 @@ div#title
      color: Green;
      font-size: smaller;
  }
+ 
+ /*
+     Styles for paging
+ */
+ 
+.seleccionado A:link {text-decoration: none; color: Black; font-weight: bolder}
+.seleccionado A:active {text-decoration: none; color: Black; font-weight: bolder}
+.seleccionado A:hover {text-decoration: none; color: Black; font-weight: bolder}
+.normal A:visited {color: Blue}
