@@ -9,17 +9,38 @@ using System.Web.Security;
 
 namespace SeguriGasesERP.Controllers
 {
+    
     [Authorize]
     public class BusquedaController : Controller
     {
+
+        #region Globals
+
+        private const int resultsPerPage = 20;
+
+        #endregion
+
         SeguriGasesEntities db = new SeguriGasesEntities();
 
         //
         // GET: /Busqueda/
 
-        public ActionResult Index()
-        {
-            List<Producto> productos = db.Productos.OrderBy(p => p.Nombre).ToList();
+        public ActionResult Index(int? page)
+        {          
+            //Seteamos el valor de page de acuerdo al parametro, si recibimos nulo lo seteamos a cero
+            page = page == null ? 0 : (int) page;
+            
+            //Numero de resultados a ignorar
+            int elementsSkip = (int) page * resultsPerPage;            
+
+            //Sacamos el total de productos para realizar la paginacion
+            int numProductos = db.Productos.Count();
+
+            //Numero de paginas
+            double totalPages = (numProductos/resultsPerPage);           
+
+            //Tomamos 10 productos a partir del numero de pagina, esto es page * 10
+            List<Producto> productos = db.Productos.OrderBy(p => p.Nombre).Skip(elementsSkip).Take(resultsPerPage).ToList();
             foreach (Producto producto in productos)
             {
                 
@@ -29,6 +50,10 @@ namespace SeguriGasesERP.Controllers
                     producto.Categoria = db.Categorias.Find(producto.IdCategoria);
 
             }
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = Math.Ceiling(totalPages);
+
             return View(productos);
         }
 

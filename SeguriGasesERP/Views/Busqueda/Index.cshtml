@@ -27,6 +27,20 @@
         </table>
     }
 </p>
+@for (int i = 0; i <= ViewBag.TotalPages; i++)
+{
+    if (i == ViewBag.CurrentPage)
+    {
+        <text> @i &nbsp; </text>
+    }
+    else
+    {
+        @Html.ActionLink(i + "", "Index", "Busqueda", new { page = i }, new { @class = "normal" });
+        <text> &nbsp; </text>
+    }
+
+
+}
 <table>
     <tr>
         <th></th>
@@ -50,11 +64,12 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
-            @Html.ActionLink("Agregar a Venta", "../CarritoDeCompras/AgregarAlCarrito/", new { id=item.ID }) |
-            @Html.ActionLink("Detalles", "../ProductoManager/Details", new { id=item.ID }) |
+            @Html.ActionLink("Agregar a Venta", "../CarritoDeCompras/AgregarAlCarrito/", new { id = item.ID }) |
+            @Html.ActionLink("Detalles", "../ProductoManager/Details", new { id = item.ID }) |
             
         </td>
         <td>
