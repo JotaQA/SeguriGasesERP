@@ -29,7 +29,7 @@ namespace SeguriGasesERP.Controllers
         {          
             //Seteamos el valor de page de acuerdo al parametro, si recibimos nulo lo seteamos a cero
             page = page == null ? 0 : (int) page;
-            Console.WriteLine("Pagina: " + page);
+            
             //Numero de resultados a ignorar
             int elementsSkip = (int) page * resultsPerPage;
 
@@ -47,6 +47,8 @@ namespace SeguriGasesERP.Controllers
                     producto.Categoria = db.Categorias.Find(producto.IdCategoria);
 
             }
+
+            ViewBag.CurrentPage = page;
 
             return View(productos);
         }
