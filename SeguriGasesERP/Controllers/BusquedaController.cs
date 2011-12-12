@@ -29,7 +29,7 @@ namespace SeguriGasesERP.Controllers
         {          
             //Seteamos el valor de page de acuerdo al parametro, si recibimos nulo lo seteamos a cero
             page = page == null ? 0 : (int) page;
-
+            Console.WriteLine("Pagina: " + page);
             //Numero de resultados a ignorar
             int elementsSkip = (int) page * resultsPerPage;
 
@@ -37,7 +37,7 @@ namespace SeguriGasesERP.Controllers
             int numProductos = db.Productos.Count();
 
             //Tomamos 10 productos a partir del numero de pagina, esto es page * 10
-            List<Producto> productos = db.Productos.OrderBy(p => p.Nombre).Take(resultsPerPage).Skip(elementsSkip).ToList();
+            List<Producto> productos = db.Productos.OrderBy(p => p.Nombre).Skip(elementsSkip).Take(resultsPerPage).ToList();
             foreach (Producto producto in productos)
             {
                 
