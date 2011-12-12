@@ -37,7 +37,7 @@ namespace SeguriGasesERP.Controllers
             int numProductos = db.Productos.Count();
 
             //Tomamos 10 productos a partir del numero de pagina, esto es page * 10
-            List<Producto> productos = db.Productos.Take(resultsPerPage).Skip(elementsSkip).ToList();
+            List<Producto> productos = db.Productos.OrderBy(p => p.Nombre).Take(resultsPerPage).Skip(elementsSkip).ToList();
             foreach (Producto producto in productos)
             {
                 
