@@ -43,6 +43,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -138,6 +139,11 @@
     <Compile Include="Models\Unidad.cs" />
     <Compile Include="Models\Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\WSRemota32\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CarritoDeComprasQuitarViewModel.cs" />
     <Compile Include="ViewModels\CarritoDeComprasViewModel.cs" />
     <Compile Include="Views\Shared\DecimalPrecisionAttribute.cs" />
@@ -146,6 +152,13 @@
     <Content Include="Content\Roles.txt" />
     <Content Include="EFCodeFirstReadMe.txt" />
     <Content Include="Global.asax" />
+    <None Include="Service References\WSRemota32\ConexionRemota32.disco" />
+    <None Include="Service References\WSRemota32\configuration91.svcinfo" />
+    <None Include="Service References\WSRemota32\configuration.svcinfo" />
+    <None Include="Service References\WSRemota32\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -199,6 +212,9 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <None Include="Service References\WSRemota32\SeguriGasesERP.WSRemota32.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -490,6 +506,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reportes\ReporteInventario.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WSRemota32\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WSRemota32\ConexionRemota32.wsdl" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

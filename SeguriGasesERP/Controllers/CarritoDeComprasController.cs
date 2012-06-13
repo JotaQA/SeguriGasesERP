@@ -10,7 +10,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Xml;
-
+using SeguriGasesERP.WSRemota32;
 
 namespace SeguriGasesERP.Controllers
 {
@@ -19,354 +19,301 @@ namespace SeguriGasesERP.Controllers
     {
 
         /******************************************************************************************************************************************
-        ' Nombre: EnviarWebRequest
-        ' Propósito: Crear una conexión remota y enviar un http request con todas las variables POST necesarias. Se genera una factura.
-        ' Output: Sin necesidad de especificación (bien puede manejarse como un sub).
-
-        '******************************************************************************************************************************************/
+         * Nombre: EnviarWebRequest
+         * Propósito: Crear una conexión remota y enviar un http request con todas las variables POST necesarias. Se genera una factura.
+         * Output: Sin necesidad de especificación (bien puede manejarse como un sub).
+         ******************************************************************************************************************************************/
         
         public string EnviarWebRequest(Cliente Cliente, Venta Venta, List<ProductoVenta> Productos, Sucursal Sucursal)
         {
             if (Cliente == null || Venta == null || Productos.Count < 1 || Sucursal == null)
                 return "* Error en los argumentos de la funcion";
-            //URL del servidor web al cual se enviará la solicitud.
-            string url = "https://www.facturarenlinea.com/CFD/ConexionRemota/ConexionRemota.aspx";
-            //Crear un objeto de conexión remota al servidor.
-            WebRequest request = WebRequest.Create(url);
-            //Establecer el método de conexión vía: POST.
-            request.Method = "POST";
 
-            /* Crear la información que llevará incluida el POST del request.
+            //Instancia del Web Service para la conexion remota
+            ConexionRemota32SoapClient conexionRemota = new ConexionRemota32SoapClient();
+
+            /* Crear la información que llevará incluida la factura
              * Establecer TODOS los datos requeridos por Facturar en Línea, que deberán ser incluidos en el POST.
              * Nota: Checar archivo API de Excel que contiene la descripción y requerimiento de cada campo.
+             * Crear la información que llevará el WS
+             * Sección de Variables para la autenticación del usuario remoto.
              */
-            /* Crear la información que llevará incluida el POST del request.
-            ' Sección de Variables POST para la autenticación del usuario remoto.
-             */
-            
-            //Establecer el nombre de usuario (RFC) (REQUERIDO).
-            string RFC = Sucursal.RFC;
-            //Nombre de la cuenta (SUCURSAL)
-            string Cuenta = Sucursal.Cuenta;
-            //Password
-            string Password = Sucursal.Password ;//+ "FASLOE";
 
+            #region Datos del Emisor
 
-            
-      
+            //Creamos el arreglo del usuario remoto
+            ArrayOfString datosUsuario = new ArrayOfString();
+            //Establecer el nombre de usuario (RFC) (REQUERIDO). Posicion 0
+            datosUsuario.Add(Sucursal.RFC);
+            //Nombre de la cuenta (SUCURSAL). Posicion 1
+            datosUsuario.Add(Sucursal.Cuenta);
+            //Password. Posicion 2
+            datosUsuario.Add(Sucursal.Password);
+
+            #endregion
+
+            #region Datos del cliente
             /*****************************************************************************************
-        ' Sección de Variables POST para identificar y actualizar los datos del Cliente o Receptor.
-        ' *****************************************************************************************/
+            * Sección de Arreglo para identificar y actualizar los datos del Cliente o Receptor.
+            *****************************************************************************************/
 
-            //Nombre del cliente REQUERIDO
-            string NombreCliente = Cliente.NombreCliente;
-            //Nombre del contacto principal OPCIONAL
-            string Contacto = Cliente.Contacto;
-            //Telefono del contacto principal OPCIONAL
-            string Telefono = Cliente.Telefono;
-            //Email del contacto OPCIONAL
-            string Email = Cliente.Email;
-            //RFC del cliente REQUERIDO
-            string rfcReceptor = Cliente.RfcReceptor;
-            //Razon Social REQUERIDO
-            string nombreReceptor = Cliente.NombreReceptor;
-            // Calle de dirección Requerido
-            string calleReceptor = Cliente.CalleReceptor;
-            // Numero Exterior REQUERIDO
-            string noExteriorReceptor = Cliente.NoExteriorReceptor;
-            //Numero Interior OPCIONAL
-            string noInteriorReceptor = Cliente.NoInteriorReceptor;
-            //Colonia REQUERIDO
-            string coloniaReceptor = Cliente.ColoniaReceptor;
-            //Localidad OPCIONAL
-            string localidadReceptor = Cliente.LocalidadReceptor;
-            //Referencia OPCIONAL
-            string referenciaReceptor = Cliente.ReferenciaReceptor;
-            //Municipio REQUERIDO
-            string municipioReceptor = Cliente.MunicipioReceptor;
-            //Estado REQUERIDO
-            string estadoReceptor = Cliente.EstadoReceptor;
-            //Pais Requerido
-            string paisReceptor = Cliente.PaisReceptor;
-            //Codigo Postal REQUERIDO
-            string codigoPostalReceptor = Cliente.CodigoPostalReceptor;
+            //Creamos el arreglo que contendra los datos del cliente o receptor
+            ArrayOfString datosReceptor = new ArrayOfString();
 
+            //Nombre del cliente REQUERIDO. Posicion 0
+            datosReceptor.Add(Cliente.NombreCliente);
+            //Nombre del contacto principal OPCIONAL. Posicion 1
+            datosReceptor.Add(Cliente.Contacto);
+            //Telefono del contacto principal OPCIONAL. Posicion 2
+            datosReceptor.Add(Cliente.Telefono);
+            //Email del contacto OPCIONAL. Posicion 3
+            datosReceptor.Add(Cliente.Email);
+            //RFC del cliente REQUERIDO. Posicion 4
+            datosReceptor.Add(Cliente.RfcReceptor);
+            //Razon Social REQUERIDO. Posicion 5
+            datosReceptor.Add(Cliente.NombreReceptor);
+            // Calle de dirección Requerido. Posicion 6
+            datosReceptor.Add(Cliente.CalleReceptor);
+            // Numero Exterior REQUERIDO. Posicion 7
+            datosReceptor.Add(Cliente.NoExteriorReceptor);
+            //Numero Interior OPCIONAL. Posicion 8
+            datosReceptor.Add(Cliente.NoInteriorReceptor);
+            //Colonia REQUERIDO. Posicion 9.
+            datosReceptor.Add(Cliente.ColoniaReceptor);
+            //Localidad OPCIONAL. Posicion 10.
+            datosReceptor.Add(Cliente.LocalidadReceptor);
+            //Referencia OPCIONAL. Posicion 11.
+            datosReceptor.Add(Cliente.ReferenciaReceptor);
+            //Municipio REQUERIDO. Posicion 12
+            datosReceptor.Add(Cliente.MunicipioReceptor);
+            //Estado REQUERIDO. Posicion 13
+            datosReceptor.Add(Cliente.EstadoReceptor);
+            //Pais Requerido. Posicion 14
+            datosReceptor.Add(Cliente.PaisReceptor);
+            //Codigo Postal REQUERIDO. Posicion 15
+            datosReceptor.Add(Cliente.CodigoPostalReceptor);
 
+            #endregion
+
+            #region Informacion del CFDI
             /*********************************************************
-            ' Sección de Variables POST de información general del CFD.
+            ' Sección de Variables de información general del CFDI.
             ' *********************************************************/
 
-            //Establecer la clave de CFD a emitir, "FAC" para factura (REQUERIDO).
-            string ClaveCFD  = "FAC";
-            //Establecer la forma de pago (REQUERIDO).
-            string formaDePago = "Pago en una sola exhibición";
-            //Establecer el tipo de moneda (Requerido).
-            string moneda = "MXN";
-            //Establecer el subtotal (REQUERIDO).
-            string subTotal= Venta.Subtotal.ToString();
-            //Establecer el total (REQUERIDO).
-            string total = Venta.Total.ToString();
-            //Establecer el importe con letra del total (REQUERIDO).
-            string importeConLetra = Venta.ImporteLetra;
+            //Arreglo del comprobante general
+            ArrayOfString datosCFDI = new ArrayOfString(); 
 
+            //Establecer la clave de CFD a emitir, "FAC" para factura (REQUERIDO). Posicion 0
+            datosCFDI.Add("FAC");
+            //Establecer la forma de pago (REQUERIDO). Posicion 1
+            datosCFDI.Add("Pago en una sola exhibición");
+            //Pago en parcialidades. (OPCIONAL). Posicion 2
+            datosCFDI.Add("");
+            //Condiciones de pago. (OPCIONAL). Posicion 3
+            datosCFDI.Add("");
+            //Metodo de pago. (Opcional). Posicion 4
+            datosCFDI.Add("");
+            //Descuento Usado (Opcional). Posicion 5
+            datosCFDI.Add("0.00");
+            //Porcentaje de descuento (Opcional). Posicion 6
+            datosCFDI.Add("0.00");
+            //Motivo del descuento (Opcional). Posicion 7
+            datosCFDI.Add("");
+            //Establecer el tipo de moneda (Requerido). Posicion 8
+            datosCFDI.Add("MXN");
+            //Tipo de cambio(Opcional). Posicion 9
+            datosCFDI.Add("");
+            //Fecha de tipo de cambio (Opcional). Posicion 10
+            datosCFDI.Add("");
+            //Impuestos Retenidos (Requerido). Posicion 11
+            datosCFDI.Add("0.000000");
+            //Impuestos Trasladados (Requerido). Posicion 12
+            datosCFDI.Add(Venta.TotalImpuestosTrasladados.ToString());
+            //Establecer el subtotal (REQUERIDO). Posicion 13
+            datosCFDI.Add(Venta.Subtotal.ToString());
+            //Establecer el total (REQUERIDO). Posicion 14
+            datosCFDI.Add(Venta.Total.ToString());
+            //Establecer el importe con letra del total (REQUERIDO). Posicion 15
+            datosCFDI.Add(Venta.ImporteLetra);
+
+            //Nuevos Campos SAT 3.2
+            // Lugar de expedicion (Requerido)
+            datosCFDI.Add("Puebla");
+            //(17) NumCuentaPago (OPCIONAL)
+            datosCFDI.Add("");
+            //(18) FolioFiscalOrig (OPCIONAL)
+            datosCFDI.Add("");
+            //(19) SerieFolioFiscalOrig (OPCIONAL)
+            datosCFDI.Add("");
+            //(20) FechaFolioFiscalOrig (OPCIONAL)
+            datosCFDI.Add("");
+            //(21) MontoFolioFiscalOrig (OPCIONAL)
+            datosCFDI.Add("");
+
+            #endregion
+
+            #region Etiquetas
+            /*************************************************************************************
+            / Sección de Variables para el uso de información comercial de la empresa emisora.
+            /*************************************************************************************/
+            //Arreglo para enviar los datos de la empresa emisora (FEL)
+            ArrayOfString datosEtiquetas = new ArrayOfString();
+            //Establecer el nombre de la etiqueta personalizada (Opcional).
+            //secuencia |nombre|valor|
+
+            //Etiqueta para el portal web
+            datosEtiquetas.Add("|Portal Web|www.segurigases.com|");
+            //Etiqueta Correo electronico
+            datosEtiquetas.Add("|Email|info@segurigases.com|");
+
+            #endregion
+
+            #region Conceptos
             /*****************************************************************************
-            ' Sección de Variables POST para la información y descripción de los conceptos.
+            ' Sección de Variables para la información y descripción de los conceptos.
             ' *****************************************************************************/
-            //Creamos los arreglos para cada producto
+            //arreglo para la referencia de los conceptos
+            ArrayOfString datosConceptos = new ArrayOfString();          
+                        
             int noProd = Productos.Count();
-            String[] Cantidades = new String[noProd];
-            String[] Descripciones = new String[noProd];
-            String[] Valores = new String[noProd];
-            String[] Importes = new String[noProd];
-
-            int i = 0;
+            //Por cada producto dentro de la venta creamos un concepto nuevo
             foreach(ProductoVenta item in Productos)
             {
-                Cantidades[i] = item.Count.ToString();
-                Descripciones[i] = item.Producto.Nombre;
-                Valores[i] = item.PrecioVenta.ToString();
-                Importes[i] = (item.PrecioVenta * item.Count).ToString();
-                i++;
+                string cantidad = item.Count.ToString();
+                string descripcion = item.Producto.Nombre;
+                string valor = item.PrecioVenta.ToString();
+                string importe = (item.PrecioVenta * item.Count).ToString();
+                string unidad = item.Producto.Unidad.Nombre;
+                string clave = item.Producto.Clave;
+
+                //Secuencia: |cantidad|unidad|noIdentificacion|descripcion|valorUnitario|importe|
+                datosConceptos.Add("|" + cantidad + "|" + unidad + "|" + clave + "|" + descripcion + "|" + valor + "|" + importe + "|");
             }
+            #endregion
 
-
-
-            /*
-             * Sección de Variables POST para indicar el total de impuestos utilizados en el CFD.
-             */
-
-            /*************************************************************************************
-        ' Sección de Variables POST para el uso de información comercial de la empresa emisora.
-        ' *************************************************************************************/
-        //Establecer el nombre de la etiqueta personalizada (Opcional).
-        string nombreEtiqueta1  = "Portal web";
-        //Establecer el valor de la etiqueta personalizada (Opcional).
-        string valorEtiqueta1 = "www.segurigases.com";
-        //Establecer el nombre de la etiqueta personalizada (Opcional).
-        string nombreEtiqueta2 = "Email";
-        //Establecer el valor de la etiqueta personalizada (Opcional).
-        string valorEtiqueta2 = "info@segurigases.com";
-
-
-            //Impuestos Retenidos
-            string totalImpuestosRetenidos = "0.000000";
-            //Impuestos Trasladados
-            string totalImpuestosTrasladados = Venta.TotalImpuestosTrasladados.ToString();
+            #region Informacion Aduanera
 
             /*
-             * Sección de Variables POST para la información de todos los impuestos trasladados utilizados en el CFD.
+             * Sección de variables para la información aduanera correspondiente a cada concepto usado en el CFDI.
+             * IMPORTANTE: El tamaño del vector de aduanera debe coincidir respectivamente con el de conceptos, ya que es 1 a 1.
+             * Secuencia: |numero|fecha|aduana|
+             * Por el momento Segurigases no cuenta con informacion aduanera por lo tanto no se enviara un arreglo con las posiciones vacias
              */
+
+            //Creacion del arreglo para la informacion aduanera
+            ArrayOfString datosInfoAduanera = new ArrayOfString();
+
+            foreach (var item in Productos)
+                datosInfoAduanera.Add(null);
+
+            #endregion
+
+            #region Impuestos Retenidos
+
+            /*
+             * Sección de variables para la información de todos los impuestos retenidos utilizados en el CFDI. 
+             * Secuencia: |NombreImpuesto|impuesto|importe|
+             * SeguriGases no retiene impuestos por lo tanto no haremos nada aqui
+             */
+
+            //Arreglo para referenciar los impuestos retenidos
+            ArrayOfString datosRetenidos = new ArrayOfString();
+
+            #endregion
+
+            #region Impuestos Retenidos Locales
+
+            /*
+             * Sección de variables para la información de todos los impuestos retenidos locales utilizados en el CFDI.
+             * Secuencia: |NombreImpuesto|impuesto|tasa|importe|
+             * SeguriGases no retiene impuestos, por lo tanto nos se hara nada
+             */
+
+            //Arreglo de Retenidos Locales
+            ArrayOfString datosRetenidosLocales = new ArrayOfString();
+
+            #endregion
+
+            #region Impuestos trasladados
+
+            /*
+             * Sección de variables para la información de todos los impuestos trasladados utilizados en el CFDI.
+             * Secuencia: |NombreImpuesto|impuesto|tasa|importe|
+             */
+
+            //Arreglo para referenciar los impuestos trasladados
+            ArrayOfString datosTrasladados = new ArrayOfString();
 
             //Establecer el nombre arbitrario del impuesto trasladado (Opcional).
-            string nombreTraslado1  = "IVA (IVA 16%)";
+            string nombreTraslado1 = "IVA (IVA 16%)";
             //Establecer el tipo de impuesto trasladado (Opcional).
             string impuestoTraslado1 = "IVA";
             //Establecer la tasa de impuesto trasladado (Opcional).
-            string tasa1 = "16.000000";
+            string tasa1 = "16.00";
             //Establecer el importe del impuesto trasladado (Opcional).
             string importeTraslado1 = Venta.TotalImpuestosTrasladados.ToString();
 
+            string cadenaTraslados = "|" + nombreTraslado1 + "|" + impuestoTraslado1 + "|" + tasa1 + "|" + importeTraslado1 + "|";
+
+            datosTrasladados.Add(cadenaTraslados);
+
+            #endregion
+
+            #region Impuestos Trasladados Locales
+
             /*
-             * Unir las variables en un string tipo POST.
-             * Nota: las variables se van uniendo de la siguiente manera: var1=valor1&var2=valor2&var3=valor4 ... etc
+             * Sección de variables para la información de todos los impuestos trasladados locales utilizados en el CFDI.  
+             * Secuencia:|NombreImpuesto|impuesto|tasa|importe|
              */
 
-            string postData = "RFC=" + RFC + "&Cuenta=" + Cuenta + "&Password=" + Password +
-        "&NombreCliente=" + NombreCliente + "&Contacto=" + Contacto + "&Telefono=" + Telefono + "&Email=" + Email + "&rfcReceptor=" + rfcReceptor + "&nombreReceptor=" + nombreReceptor +
-        "&calleReceptor=" + calleReceptor + "&noExteriorReceptor=" + noExteriorReceptor + "&noInteriorReceptor=" + noInteriorReceptor +
-        "&coloniaReceptor=" + coloniaReceptor + "&localidadReceptor=" + localidadReceptor + "&referenciaReceptor=" + referenciaReceptor +
-        "&municipioReceptor=" + municipioReceptor + "&estadoReceptor=" + estadoReceptor + "&paisReceptor=" + paisReceptor +
-        "&codigoPostalReceptor=" + codigoPostalReceptor +
-        "&ClaveCFD=" + ClaveCFD + "&formaDePago=" + formaDePago + "&moneda=" + moneda +
-        "&subTotal=" + subTotal + "&total=" + total + "&importeConLetra=" + importeConLetra +
-        "&nombreEtiqueta1=" + nombreEtiqueta1 + "&valorEtiqueta1=" + valorEtiqueta1 + "&nombreEtiqueta2=" + nombreEtiqueta2 + "&valorEtiqueta2=" + valorEtiqueta2;
-            i = 0;
-            foreach (ProductoVenta item in Productos)
+            //Arreglo de traslados locales
+            ArrayOfString datosTrasladosLocales = new ArrayOfString();
+            datosTrasladosLocales.Add(cadenaTraslados);
+            
+            #endregion
+
+            #region Consumision del servicio
+
+            //Respuesta del servicio
+            ArrayOfString respuestaWS = new ArrayOfString();
+
+            //Consumimos el servicio
+            respuestaWS = conexionRemota.GenerarCFDIv32(datosUsuario,
+                                                        datosReceptor,
+                                                        datosCFDI,
+                                                        datosEtiquetas,
+                                                        datosConceptos,
+                                                        datosInfoAduanera,
+                                                        datosRetenidos,
+                                                        datosTrasladados,
+                                                        datosRetenidosLocales,
+                                                        datosTrasladosLocales);
+
+            string folio = "";
+            //Verificar si la respuesta fue o no exitosa
+            if (!respuestaWS[0].Equals("True"))
             {
-                postData += "&cantidad" + (i+1) + "="+ Cantidades[i] + "&descripcion" + (i+1) + "=" + Descripciones[i] + "&valorUnitario" + (i+1) + "=" + Valores[i] + "&importe" + (i+1) + "=" + Importes[i];
-                i++;
+                //No Fue exitosa, debemos cancelar la venta aqui, pero por el momento solo reportaremos el error en el log
+                string ruta = @"C:\Facturas\respuesta" + DateTime.Now + ".txt";
+                // Se usa una clase externa que simplemente guarda un contenido en un archivo de texto.
+
+                //System.IO.File.WriteAllText(ruta, respuestaWS);
             }
-        
-        postData += "&totalImpuestosRetenidos=" + totalImpuestosRetenidos + "&totalImpuestosTrasladados=" + totalImpuestosTrasladados + 
-        "&nombreTraslado1=" + nombreTraslado1 + "&impuestoTraslado1=" + impuestoTraslado1 + "&tasa1=" + tasa1 + "&importeTraslado1=" + importeTraslado1;
+            else
+            {
+                //Si fe exitosa, entonces guardaremos el Xml del CDF en la computadora
+                XmlDocument cfdXML = new XmlDocument();                
+                //El contenido XML se encuentra en la posicion 3 del arreglo
+                cfdXML.LoadXml(respuestaWS[3]);
+                folio = cfdXML.GetElementById("folio").ToString();
+                //Leemos el folio
+                //TODO: Parsear el XML para buscar el folio
+                //Guardamos el XML
+                //TODO: cfdXML.Save(@"C:\CFDXML\
+            }
+            #endregion             
 
-
-
-        //' Establecer el string del POST en un arreglo de bytes para su envío.
-        byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            //Establecer la propiedad ContentType del WebRequest.
-        request.ContentType = "application/x-www-form-urlencoded";
-        //Establecer la propiedad ContentLength del WebRequest.
-        request.ContentLength = byteArray.Length;
-        //Obtener el stream del request.
-        Stream dataStream  = request.GetRequestStream();
-        //Escribir la información al stream del request.
-        dataStream.Write(byteArray, 0, byteArray.Length);
-        //Cerrar el objeto Stream.
-        dataStream.Close();
-
-        // Obtener la respuesta.
-        WebResponse respuesta = request.GetResponse();
-        //Obtener el stream que contiene la respuesta del servidor.
-        dataStream = respuesta.GetResponseStream();
-        //Abrir el stream usando un StreamReader para acceso sencillo.
-        StreamReader reader = new  StreamReader(dataStream);
-        // Leer el contenido.
-        string responseFromServer = reader.ReadToEnd();
-        // Mostrar el contenido.
-        //Console.WriteLine(responseFromServer)
-
-        // Paso opcional: guardar el contenido de response en un archivo de texto."
-        // Cualquier directorio donde se desee almacenar el contenido del response. Este paso no es necesario si se leerán las variables de retorno como headers.
-            string ruta = @"C:\Facturas\respuesta.txt";
-        // Se usa una clase externa que simplemente guarda un contenido en un archivo de texto.
-            System.IO.File.WriteAllText(ruta, responseFromServer);
-
-        /************************************************************************
-        ' Sección para obtener las variables de respuesta (HEADERS del RESPONSE).
-        '************************************************************************/
-        //Establecer un objeto del tipo UTF8Encoding.
-        System.Text.UTF8Encoding utf8 = new System.Text.UTF8Encoding();
-        //Declarar variable para almacenar los bytes.
-        byte[] encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["Usuario"]);
-            // Una vez decodificados y obtenidos, pueden simplemente almacenarse en un string para futuro uso.
-
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["Usuario"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["Cuenta"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["EjecucionCorrecta"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["MensajeEjecucion"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["Serie"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        string SerieFolio = utf8.GetString(encodedBytes);
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["Folio"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        SerieFolio += utf8.GetString(encodedBytes);
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["Fecha"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["NumeroCertificado"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["NumeroAprobacion"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["AnoAprobacion"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["SelloDigital"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["SelloDigitalPACFD"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["CadenaOriginal"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["InfoPACFD"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["LeyendaDocumentoImpreso"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-        // Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["CreditosRestantes"]);
-        // Escribir en pantalla el header transformando de UTF-8 al encoding por default.
-        Response.Write(utf8.GetString(encodedBytes) + "<br>");
-
-        /*******************************************************************************************
-        ' Sección para obtener el CFD oficial, es decir, el archivo XML enviado en un string limpio.
-        '*******************************************************************************************/
-
-        //Obtener bytes usando el encoding default.
-        encodedBytes = System.Text.ASCIIEncoding.Default.GetBytes(respuesta.Headers["XMLGenerado"]);
-        //Obtener el string limpio, del código XML del CFD.
-        string xmlGenerado = utf8.GetString(encodedBytes);
-
-        //Crear un objeto XMLDocument.
-        XmlDocument xmlDoc = new XmlDocument();
-        //Cargar el contenido XML al objeto por medio del string (XML) recibido.
-        xmlDoc.LoadXml(xmlGenerado);
-        //Guardar el CFD en su formato XML usando el objeto XmlDocument.
-        xmlDoc.Save(ruta + "FACTURA_" + Venta.ID + ".xml");
-
-            //Hacer try.
-        Venta.ClaveCFD = SerieFolio;
-
-        var venta = db.Ventas.Find(Venta.ID);
-        if (venta == null)
-            return "* Error al recuperar la venta que se está procesando";
-        
-        
-        
-        
-        try
-        {
-            
-            // Crear un objeto tipo UTF8Encoding.
-            System.Text.UTF8Encoding utf8Encoder = new System.Text.UTF8Encoding();
-            // Crear un objeto Byte e inicializarlo.
-            byte[] bufferXML = utf8Encoder.GetBytes(xmlGenerado);
-            // Obtener en flujo de bytes el string XML.
-            // Crear el archivo XML y tener internamente copia de mi CFD oficial.
-            //GUARDAMOS EL XML EN LA BD
-            System.Text.Encoding enc = System.Text.Encoding.ASCII;
-            venta.ClaveCFD = SerieFolio;
-            venta.FacturaXML = enc.GetString(bufferXML);
-            db.SaveChanges();
-
-            
-            
-            System.IO.File.WriteAllBytes(ruta + "FACTURA_" + Venta.ID + "_from_Stream.xml", bufferXML);
-        }
-        catch
-        {
-            
-            // Mostrar mensaje de error.
-            Response.Write("Imposible crear archivo XML.");
-        }
-
-
-            /*
-             * Cerramos las conexiones!
-             */
-        // Cerrar el objeto StreamReader.
-        reader.Close();
-        // Cerrar stream de datos.
-        dataStream.Close();
-        // Cerrar el objeto WebResponse.
-        respuesta.Close();
-
-
-
-
-
-            return SerieFolio;
+            return folio;
         }
 
 
